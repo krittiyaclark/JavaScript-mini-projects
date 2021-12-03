@@ -58,4 +58,16 @@ function () {
 // Event: Display Books
 
 
-document.addEventListener('DOMContentLoaded', UI.displayBooks); // Event: Remove a Book
+document.addEventListener('DOMContentLoaded', UI.displayBooks); // Event: Add a Book
+
+document.querySelector('#book-form').addEventListener('submit', function (e) {
+  // Prevent actual submit
+  e.preventDefault(); // Get form value
+
+  var title = document.querySelector('#title').value;
+  var author = document.querySelector('#author ').value;
+  var isbn = document.querySelector('#isbn').value; // Instatiate book
+
+  var book = new Book(title, author, isbn);
+  console.log(book);
+}); // Event: Remove a Book
