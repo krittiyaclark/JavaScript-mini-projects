@@ -68,6 +68,7 @@ document.querySelector('#book-form').addEventListener('submit', function (e) {
   var author = document.querySelector('#author ').value;
   var isbn = document.querySelector('#isbn').value; // Instatiate book
 
-  var book = new Book(title, author, isbn);
-  console.log(book);
+  var book = new Book(title, author, isbn); // Add Book to UI
+
+  UI.addBookToList(book);
 }); // Event: Remove a Book
