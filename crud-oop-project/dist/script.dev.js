@@ -52,6 +52,13 @@ function () {
       list.appendChild(row);
     }
   }, {
+    key: "deleteBook",
+    value: function deleteBook(el) {
+      if (el.classList.contains('delete')) {
+        el.parentElement.parentElement.remove();
+      }
+    }
+  }, {
     key: "clearFields",
     value: function clearFields() {
       document.querySelector('#title').value = '';
@@ -81,3 +88,7 @@ document.querySelector('#book-form').addEventListener('submit', function (e) {
 
   UI.clearFields();
 }); // Event: Remove a Book
+
+document.querySelector('#book-list').addEventListener('click', function (e) {
+  UI.deleteBook(e.target);
+});
