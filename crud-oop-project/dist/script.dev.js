@@ -66,7 +66,11 @@ function () {
       div.appendChild(document.createTextNode(messsage));
       var container = document.querySelector('.container');
       var form = document.querySelector('#book-form');
-      container.insertBefore(div, form);
+      container.insertBefore(div, form); // Vanish in 5 seconds
+
+      setTimeout(function () {
+        return document.querySelector('.alert').remove();
+      }, 5000);
     }
   }, {
     key: "clearFields",
