@@ -102,7 +102,9 @@ document.querySelector('#book-form').addEventListener('submit', function (e) {
     // Instatiate book
     var book = new Book(title, author, isbn); // Add Book to UI
 
-    UI.addBookToList(book); // Clear fields
+    UI.addBookToList(book); // Show success messagae
+
+    UI.showAlert('Book Added', 'success'); // Clear fields
 
     UI.clearFields();
   }
