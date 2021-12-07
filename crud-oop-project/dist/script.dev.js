@@ -83,7 +83,28 @@ function () {
 
   return UI;
 }(); // Store Class: Handles Storage
-// Event: Display Books
+
+
+var Store =
+/*#__PURE__*/
+function () {
+  function Store() {
+    _classCallCheck(this, Store);
+  }
+
+  _createClass(Store, null, [{
+    key: "getBooks",
+    value: function getBooks() {}
+  }, {
+    key: "addBooks",
+    value: function addBooks(book) {}
+  }, {
+    key: "removeBooks",
+    value: function removeBooks(isbn) {}
+  }]);
+
+  return Store;
+}(); // Event: Display Books
 
 
 document.addEventListener('DOMContentLoaded', UI.displayBooks); // Event: Add a Book
