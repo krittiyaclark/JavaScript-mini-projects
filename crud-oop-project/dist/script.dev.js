@@ -26,16 +26,7 @@ function () {
   _createClass(UI, null, [{
     key: "displayBooks",
     value: function displayBooks() {
-      var StoreBooks = [{
-        title: 'Book One',
-        author: 'John Doe',
-        isbn: '12345'
-      }, {
-        title: 'Book Two',
-        author: 'Steven Grinder',
-        isbn: '56789'
-      }];
-      var books = StoreBooks; // Loop the StoreBooks and call the addBookToList method and pass that (book) into it
+      var books = Store.getBooks(); // Loop the StoreBooks and call the addBookToList method and pass that (book) into it
 
       books.forEach(function (book) {
         return UI.addBookToList(book);
@@ -94,13 +85,35 @@ function () {
 
   _createClass(Store, null, [{
     key: "getBooks",
-    value: function getBooks() {}
+    value: function getBooks() {
+      var books;
+
+      if (localStorage.getItem('book') === null) {
+        books = [];
+      } else {
+        book = JSON.parse(localStorage.getItem('books'));
+      }
+
+      return books;
+    }
   }, {
     key: "addBooks",
-    value: function addBooks(book) {}
+    value: function addBooks(book) {
+      var books = Store.getBooks();
+      books.push(book);
+      localStorage.setItem('books', JSON.stringify(books));
+    }
   }, {
     key: "removeBooks",
-    value: function removeBooks(isbn) {}
+    value: function removeBooks(isbn) {
+      var books = Store.getBooks();
+      books.forEach(function (book, index) {
+        if (book.isbn === isbn) {
+          books.splice(index, 1);
+        }
+      });
+      localStorage.setItem('books', JSON.stringify(books));
+    }
   }]);
 
   return Store;
@@ -121,9 +134,12 @@ document.querySelector('#book-form').addEventListener('submit', function (e) {
     UI.showAlert('Please fill in all fields', 'danger');
   } else {
     // Instatiate book
-    var book = new Book(title, author, isbn); // Add Book to UI
+    var _book = new Book(title, author, isbn); // Add Book to UI
 
-    UI.addBookToList(book); // Show success messagae
+
+    UI.addBookToList(_book); // Add Book to Store
+
+    Store.addBooks(_book); // Show success messagae
 
     UI.showAlert('Book Added', 'success'); // Clear fields
 
